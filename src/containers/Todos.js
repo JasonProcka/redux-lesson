@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 // Containers
-import AddTodo from './containers/AddTodo'
-// Components
-import TodoList from './components/TodoList'
+import AddTodo from "./AddTodo";
+import TodoList from "./TodoList";
 
-class AddTodo extends Component {
+class Todos extends Component {
 	render() {
 		return (
 			<div>
 				<AddTodo />
 				<TodoList />
 			</div>
-		)
+		);
 	}
 }
 
-export default AddTodo
+export default Todos;

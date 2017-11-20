@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
-import AddTodo from './containers/AddTodo'
+import React from 'react'
 import './App.css'
+// Contianers
+import Todos from './containers/Todos'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <AddTodo />
-      </div>
-    )
-  }
-}
+const App = () => (
+	<div className="App">
+		<Todos />
+	</div>
+)
 
 export default App
