@@ -1,8 +1,9 @@
 import React from "react";
+import "../styles/todo-list.css";
 
 const TodoList = props => {
-	const handleOnClickTodo = () => {
-		console.log("click");
+	const handleOnClickTodo = key => {
+		props.onCompleteTodo(key);
 	};
 
 	const handleOnClickRemove = key => {
@@ -15,9 +16,13 @@ const TodoList = props => {
 			<ul>
 				{props.todos.map(todo => (
 					<li key={todo.key}>
-						<span onClick={handleOnClickTodo}>{todo.text}</span>
+						<div className={'todo', () => {
+							return 'nothing'
+						}} onClick={() => handleOnClickTodo(todo.key)}>
+							{todo.text}
+						</div>
 						<button onClick={() => handleOnClickRemove(todo.key)}>
-							Delete
+							x
 						</button>
 					</li>
 				))}

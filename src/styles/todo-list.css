@@ -1,0 +1,17 @@
+.todo {
+	border: 3px solid #F6F6F6;
+	background-color: #FFF;
+	padding: 20px;
+	display: inline-block;
+}
+
+.todo button {
+	border: 0;
+	background-color: blue;
+	padding: 6px 10px;
+	color: #FFF;
+}
+
+.completed {
+
+}

@@ -3,10 +3,15 @@ import { connect } from "react-redux";
 import TodoListComponent from "../components/TodoList";
 // Actions
 import { removeTodo } from "../actions/index";
+import { completeTodo } from '../actions/index'
 
 class TodoList extends Component {
 	handleOnRemoveTodo(key) {
 		this.props.dispatch(removeTodo(key));
+	}
+
+	handleOnCompleteTodo(key) {
+		this.props.dispatch(completeTodo(key))
 	}
 
 	render() {
@@ -15,6 +20,7 @@ class TodoList extends Component {
 				<TodoListComponent
 					todos={this.props.todos}
 					onRemoveTodo={this.handleOnRemoveTodo.bind(this)}
+					onCompleteTodo={this.handleOnCompleteTodo.bind(this)}
 				/>
 			</div>
 		);
