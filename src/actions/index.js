@@ -1,4 +1,5 @@
 export const ADD_TODO = 'ADD_TODO'
+export const UPDATE_TODO = 'UPDATE_TODO'
 export const REMOVE_TODO = 'REMOVE_TODO'
 export const COMPLETE_TODO = 'COMPLETE_TODO'
 
@@ -9,16 +10,23 @@ export const addTodo = text => {
 	}
 }
 
-export const removeTodo = key => {
+export const completeTodo = key => {
 	return {
-		type: REMOVE_TODO,
+		type: COMPLETE_TODO,
 		key
 	}
 }
 
-export const completeTodo = key => {
+export const updateTodo = (key, text) => {
 	return {
-		type: COMPLETE_TODO,
+		type: UPDATE_TODO,
+		payload: {key, text}
+	}
+}
+
+export const removeTodo = key => {
+	return {
+		type: REMOVE_TODO,
 		key
 	}
 }

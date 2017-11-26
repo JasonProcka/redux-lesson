@@ -63,7 +63,9 @@ class TodoComponent extends Component {
 		this.setState({ currentEditText: event.target.value });
 	};
 
-	handleOnSubmitChange = key => {
+	handleOnSubmitChange = (key, text) => {
+		this.props.onUpdateTodo(key, text)
+
 		this.setState({
 			editingTodo: false
 		});
@@ -85,7 +87,7 @@ class TodoComponent extends Component {
 		return (
 			<TodoWrapper>
 				{this.state.editingTodo ? (
-					<div>
+					<form>
 						<TodoEditor
 							value={this.state.currentEditText}
 							type="text"
@@ -93,7 +95,8 @@ class TodoComponent extends Component {
 							onSubmit={this.handleOnSubmitChange}
 							autoFocus
 						/>
-					</div>
+						<button onSubmit={() => { this.handleOnSubmitChange(this.props.todoKey, this.state.updateCurrentEditText) }}>Save</button>
+					</form>
 				) : (
 					<div>
 						<Todo
