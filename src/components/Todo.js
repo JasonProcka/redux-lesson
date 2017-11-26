@@ -28,12 +28,13 @@ const EditTodo = styled.button`
 	border: 0;
 `;
 
-const EditingTodo = styled.input`
+const TodoEditor = styled.input`
 	width: 100%;
 	border: 0;
 	padding: 20px;
 	font-size: 18px;
-`
+	font-family: 'Lato', sans-serif;
+`;
 
 class TodoComponent extends Component {
 	constructor(props) {
@@ -41,28 +42,43 @@ class TodoComponent extends Component {
 
 		this.state = {
 			editingTodo: false,
-			currentEdit: this.props.todoText		
-		}
+			currentEditText: ""
+		};
 	}
 
 	handleOnClickTodo = key => {
 		this.props.onCompleteTodo(key);
 	};
 
-	handleOnClickEdit = key => {
+	// Todo editing
+
+	handleOnClickEdit = () => {
 		this.setState({
 			editingTodo: true
-		})
-	}
+		});
+	};
+
+	updateCurrentEditText = event => {
+		event.preventDefault();
+		this.setState({ currentEditText: event.target.value });
+	};
 
 	handleOnSubmitChange = key => {
 		this.setState({
 			editingTodo: false
-		})
-	}
+		});
+	};
+
+	// Todo removal
 
 	handleOnClickRemove = key => {
 		this.props.onRemoveTodo(key);
+	};
+
+	componentDidMount = () => {
+		this.setState({
+			currentEditText: this.props.todoText
+		});
 	};
 
 	render() {
@@ -70,13 +86,19 @@ class TodoComponent extends Component {
 			<TodoWrapper>
 				{this.state.editingTodo ? (
 					<div>
-						<EditingTodo type="text" onSubmit={this.handleOnSubmitChange} />
+						<TodoEditor
+							value={this.state.currentEditText}
+							type="text"
+							onChange={this.updateCurrentEditText}
+							onSubmit={this.handleOnSubmitChange}
+							autoFocus
+						/>
 					</div>
 				) : (
 					<div>
 						<Todo
 							className={`todo${this.props.todoCompletion ? " completed" : ""}`}
-							onClick={() => this.handleOnClickTodo(this.props.todoKey)}
+							onClick={() => this.handleOnClickTodo()}
 						>
 							{this.props.todoText}
 						</Todo>
@@ -85,7 +107,13 @@ class TodoComponent extends Component {
 						>
 							Remove
 						</RemoveTodo>
-						<EditTodo onClick={() => {this.handleOnClickEdit(this.props.todoKey)}}>Edit</EditTodo>
+						<EditTodo
+							onClick={() => {
+								this.handleOnClickEdit(this.props.todoKey);
+							}}
+						>
+							Edit
+						</EditTodo>
 					</div>
 				)}
 			</TodoWrapper>
