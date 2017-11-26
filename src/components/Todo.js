@@ -13,6 +13,7 @@ const TodoWrapper = styled.div`
 const Todo = styled.div`
 	padding: 20px;
 	display: inline-block;
+	font-size: 18px;
 `;
 
 const RemoveTodo = styled.button`
@@ -30,7 +31,8 @@ const EditTodo = styled.button`
 const EditingTodo = styled.input`
 	width: 100%;
 	border: 0;
-	padding: 10px 14px;
+	padding: 20px;
+	font-size: 18px;
 `
 
 class TodoComponent extends Component {

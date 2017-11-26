@@ -17,7 +17,7 @@ class TodoList extends Component {
 	render() {
 		return (
 			<div>
-				<ul style={{ margin: 0, padding: 0 }}>
+				<ul style={{ margin: 0, marginTop: 20, padding: 0 }}>
 					{this.props.todos
 						.map(todo => (
 							<li key={todo.key} style={{ marginBottom: 15, listStyle: "none" }}>
