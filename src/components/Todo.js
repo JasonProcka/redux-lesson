@@ -33,7 +33,7 @@ const TodoEditor = styled.input`
 	border: 0;
 	padding: 20px;
 	font-size: 18px;
-	font-family: 'Lato', sans-serif;
+	font-family: "Lato", sans-serif;
 `;
 
 class TodoComponent extends Component {
@@ -65,10 +65,12 @@ class TodoComponent extends Component {
 
 	handleOnSubmitChange = (key, text) => {
 		this.props.onUpdateTodo(key, text)
-
 		this.setState({
 			editingTodo: false
 		});
+
+		console.log('key', key);
+		console.log('text', text);
 	};
 
 	// Todo removal
@@ -87,7 +89,15 @@ class TodoComponent extends Component {
 		return (
 			<TodoWrapper>
 				{this.state.editingTodo ? (
-					<form>
+					<form
+						onSubmit={e => {
+							e.preventDefault();
+							this.handleOnSubmitChange(
+								this.props.todoKey,
+								this.state.currentEditText
+							);
+						}}
+					>
 						<TodoEditor
 							value={this.state.currentEditText}
 							type="text"
@@ -95,7 +105,7 @@ class TodoComponent extends Component {
 							onSubmit={this.handleOnSubmitChange}
 							autoFocus
 						/>
-						<button onSubmit={() => { this.handleOnSubmitChange(this.props.todoKey, this.state.updateCurrentEditText) }}>Save</button>
+						<button>Save</button>
 					</form>
 				) : (
 					<div>

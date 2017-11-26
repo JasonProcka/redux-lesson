@@ -46,15 +46,15 @@ class AddTodo extends Component {
 
 	render() {
 		return (
-			<form>
+			<form onSubmit={this.handleOnClick}>
 				<TodoTextInput
 					className="todo-input"
 					type="text"
-					onChange={this.handleOnChange.bind(this)}
+					onChange={this.handleOnChange}
 					value={this.state.value}
 					placeholder="Today I'll..."
 				/>
-				<TodoButtonInput onClick={this.handleOnClick.bind(this)}>
+				<TodoButtonInput>
 					Add
 				</TodoButtonInput>
 			</form>
