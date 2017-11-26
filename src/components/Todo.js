@@ -29,11 +29,13 @@ const EditTodo = styled.button`
 `;
 
 const TodoEditor = styled.input`
+	display: inline-block;
 	width: 100%;
 	border: 0;
 	padding: 20px;
 	font-size: 18px;
 	font-family: "Lato", sans-serif;
+	box-sizing: border-box;
 `;
 
 class TodoComponent extends Component {
@@ -42,9 +44,15 @@ class TodoComponent extends Component {
 
 		this.state = {
 			editingTodo: false,
-			currentEditText: ""
+			editorValue: ''
 		};
 	}
+
+	componentDidMount = () => {
+		this.setState({ editorValue: this.props.todoText })
+	}
+
+	// Todo completion
 
 	handleOnClickTodo = key => {
 		this.props.onCompleteTodo(key);
@@ -58,31 +66,24 @@ class TodoComponent extends Component {
 		});
 	};
 
-	updateCurrentEditText = event => {
+	updateEditorValue = event => {
 		event.preventDefault();
-		this.setState({ currentEditText: event.target.value });
+		this.setState({ editorValue: event.target.value });
 	};
 
 	handleOnSubmitChange = (key, text) => {
-		this.props.onUpdateTodo(key, text)
-		this.setState({
-			editingTodo: false
-		});
-
-		console.log('key', key);
-		console.log('text', text);
+		if (text) {
+			this.props.onUpdateTodo(key, text)
+			this.setState({
+				editingTodo: false
+			});
+		}
 	};
 
 	// Todo removal
 
 	handleOnClickRemove = key => {
 		this.props.onRemoveTodo(key);
-	};
-
-	componentDidMount = () => {
-		this.setState({
-			currentEditText: this.props.todoText
-		});
 	};
 
 	render() {
@@ -94,14 +95,14 @@ class TodoComponent extends Component {
 							e.preventDefault();
 							this.handleOnSubmitChange(
 								this.props.todoKey,
-								this.state.currentEditText
+								this.state.editorValue
 							);
 						}}
 					>
 						<TodoEditor
-							value={this.state.currentEditText}
+							value={this.state.editorValue}
 							type="text"
-							onChange={this.updateCurrentEditText}
+							onChange={this.updateEditorValue}
 							onSubmit={this.handleOnSubmitChange}
 							autoFocus
 						/>
