@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-// Contianers
+// Containers
 import Todos from './containers/Todos'
 // Components
 import Header from './components/Header'

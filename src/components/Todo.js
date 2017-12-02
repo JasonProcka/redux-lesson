@@ -5,13 +5,12 @@ import styled from "styled-components";
 // Styles
 
 const TodoWrapper = styled.div`
-	border-radius: 4px;
-	background-color: #fff;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	
 `;
 
 const Todo = styled.div`
-	padding: 20px;
+	padding: 20px 0;
+	margin-right: 20px;
 	display: inline-block;
 	font-size: 18px;
 `;
@@ -32,7 +31,7 @@ const TodoEditor = styled.input`
 	display: inline-block;
 	width: 100%;
 	border: 0;
-	padding: 20px;
+	padding: 20px 0;
 	font-size: 18px;
 	font-family: "Lato", sans-serif;
 	box-sizing: border-box;
